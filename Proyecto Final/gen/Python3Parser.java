@@ -847,7 +847,7 @@ public class Python3Parser extends Parser {
 			setState(236);
 			match(CLOSE_PAREN);
 			if (countDef>=5){
-				System.out.println("Mal Olor detectado: Metodo Largo, Fila:Columna "+ whereDef+", Cantidad parametros: "+countDef);
+				System.out.println("Mal Olor detectado: Lista de Parámetros Larga, Fila:Columna "+ whereDef+", Cantidad parametros: "+countDef);
 			}
 			countDef = 0;
 			whereDef = "";
