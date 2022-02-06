@@ -311,7 +311,6 @@ public class Python3Parser extends Parser {
 	public final File_inputContext file_input() throws RecognitionException {
 		File_inputContext _localctx = new File_inputContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_file_input);
-		System.out.println("file_input");
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -319,12 +318,10 @@ public class Python3Parser extends Parser {
 			setState(183);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			System.out.println(_la);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << NUMBER) | (1L << DEF) | (1L << RETURN) | (1L << RAISE) | (1L << FROM) | (1L << IMPORT) | (1L << GLOBAL) | (1L << NONLOCAL) | (1L << ASSERT) | (1L << IF) | (1L << WHILE) | (1L << FOR) | (1L << TRY) | (1L << WITH) | (1L << LAMBDA) | (1L << NOT) | (1L << NONE) | (1L << TRUE) | (1L << FALSE) | (1L << CLASS) | (1L << YIELD) | (1L << DEL) | (1L << PASS) | (1L << CONTINUE) | (1L << BREAK) | (1L << ASYNC) | (1L << AWAIT) | (1L << NEWLINE) | (1L << NAME) | (1L << ELLIPSIS) | (1L << STAR) | (1L << OPEN_PAREN) | (1L << OPEN_BRACK))) != 0) || ((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (ADD - 68)) | (1L << (MINUS - 68)) | (1L << (NOT_OP - 68)) | (1L << (OPEN_BRACE - 68)) | (1L << (AT - 68)))) != 0)) {
 				{
 				setState(181);
 				_errHandler.sync(this);
-				System.out.println(_input.LA(1));
 				switch (_input.LA(1)) {
 				case NEWLINE:
 					{
@@ -382,7 +379,6 @@ public class Python3Parser extends Parser {
 				setState(185);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				System.out.println(_input.LA(1));
 			}
 			setState(186);
 			match(EOF);
@@ -440,7 +436,6 @@ public class Python3Parser extends Parser {
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NEWLINE) {
-				System.out.println(_input.LA(1));
 				{
 
 				{
@@ -500,7 +495,6 @@ public class Python3Parser extends Parser {
 	public final DecoratorContext decorator() throws RecognitionException {
 		DecoratorContext _localctx = new DecoratorContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_decorator);
-		System.out.println("decorator");
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -512,7 +506,6 @@ public class Python3Parser extends Parser {
 			setState(204);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			System.out.println(_input.LA(1));
 			if (_la==OPEN_PAREN) {
 				{
 				setState(199);
@@ -520,7 +513,6 @@ public class Python3Parser extends Parser {
 				setState(201);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				System.out.println("otra: "+_input.LA(1));
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << NUMBER) | (1L << LAMBDA) | (1L << NOT) | (1L << NONE) | (1L << TRUE) | (1L << FALSE) | (1L << AWAIT) | (1L << NAME) | (1L << ELLIPSIS) | (1L << STAR) | (1L << OPEN_PAREN) | (1L << POWER) | (1L << OPEN_BRACK))) != 0) || ((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (ADD - 68)) | (1L << (MINUS - 68)) | (1L << (NOT_OP - 68)) | (1L << (OPEN_BRACE - 68)))) != 0)) {
 					{
 					setState(200);
@@ -768,7 +760,6 @@ public class Python3Parser extends Parser {
 	public final FuncdefContext funcdef() throws RecognitionException {
 		FuncdefContext _localctx = new FuncdefContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_funcdef);
-		System.out.println("funcdef");
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -782,7 +773,6 @@ public class Python3Parser extends Parser {
 			setState(227);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			System.out.println(_input.LA(1));
 			if (_la==ARROW) {
 				{
 				setState(225);
@@ -837,7 +827,6 @@ public class Python3Parser extends Parser {
 	public final ParametersContext parameters() throws RecognitionException {
 		ParametersContext _localctx = new ParametersContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_parameters);
-		System.out.println("parameters");
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -847,7 +836,6 @@ public class Python3Parser extends Parser {
 			setState(234);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			System.out.println(_input.LA(1));
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NAME) | (1L << STAR) | (1L << POWER))) != 0)) {
 				{
 				setState(233);
@@ -915,7 +903,6 @@ public class Python3Parser extends Parser {
 	public final TypedargslistContext typedargslist() throws RecognitionException {
 		TypedargslistContext _localctx = new TypedargslistContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_typedargslist);
-		System.out.println("typedargslist");
 		int _la;
 		try {
 			int _alt;
@@ -923,8 +910,6 @@ public class Python3Parser extends Parser {
 			{
 			setState(319);
 			_errHandler.sync(this);
-			System.out.println(_input.LA(1));
-			System.out.println(match(NAME));
 			switch (_input.LA(1)) {
 			case NAME:
 				{
@@ -933,7 +918,6 @@ public class Python3Parser extends Parser {
 				setState(241);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				System.out.println(_input.LA(1));
 				if (_la==ASSIGN) {
 					{
 					setState(239);
@@ -1229,7 +1213,6 @@ public class Python3Parser extends Parser {
 	public final TfpdefContext tfpdef() throws RecognitionException {
 		TfpdefContext _localctx = new TfpdefContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_tfpdef);
-		System.out.println("tfpdef");
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1239,7 +1222,6 @@ public class Python3Parser extends Parser {
 			setState(324);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			System.out.println(_input.LA(1));
 			if (_la==COLON) {
 				{
 				setState(322);
@@ -1660,11 +1642,9 @@ public class Python3Parser extends Parser {
 	public final StmtContext stmt() throws RecognitionException {
 		StmtContext _localctx = new StmtContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_stmt);
-		System.out.println("stmt");
 		try {
 			setState(413);
 			_errHandler.sync(this);
-			System.out.println(_input.LA(1));
 			switch (_input.LA(1)) {
 			case STRING:
 			case NUMBER:
@@ -1765,7 +1745,6 @@ public class Python3Parser extends Parser {
 	public final Simple_stmtContext simple_stmt() throws RecognitionException {
 		Simple_stmtContext _localctx = new Simple_stmtContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_simple_stmt);
-		System.out.println("simple_stmt");
 		int _la;
 		try {
 			int _alt;
@@ -3696,11 +3675,9 @@ public class Python3Parser extends Parser {
 	public final Compound_stmtContext compound_stmt() throws RecognitionException {
 		Compound_stmtContext _localctx = new Compound_stmtContext(_ctx, getState());
 		enterRule(_localctx, 78, RULE_compound_stmt);
-		System.out.println("compound_stmt");
 		try {
 			setState(613);
 			_errHandler.sync(this);
-			System.out.println(_input.LA(1));
 			switch (_input.LA(1)) {
 			case IF:
 				enterOuterAlt(_localctx, 1);
