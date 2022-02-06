@@ -1,4 +1,15 @@
 def prueba (a, b, c, d, e, f):
+    prueba(a, b, c)
+
+def prueba (a, b, c, d):
+    prueba(a, b, c, d, f, d, s, v)
+
+def prueba (a, b, c, d, e, f, r, t, y):
     print(a)
 
+def prueba ():
+    print(a)
+
+def prueba (a):
+    print(a)
 

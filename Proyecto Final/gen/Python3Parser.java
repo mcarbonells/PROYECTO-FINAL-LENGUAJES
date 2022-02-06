@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class Python3Parser extends Parser {
 	public int countDef = 0;
+	public String whereDef = "";
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -845,6 +846,12 @@ public class Python3Parser extends Parser {
 
 			setState(236);
 			match(CLOSE_PAREN);
+			if (countDef>=5){
+				System.out.println("Mal Olor detectado: Metodo Largo, Fila:Columna "+ whereDef+", Cantidad parametros: "+countDef);
+			}
+			countDef = 0;
+			whereDef = "";
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -914,6 +921,7 @@ public class Python3Parser extends Parser {
 			case NAME:
 				{
 				setState(238);
+				countDef += 1;
 				tfpdef();
 				setState(241);
 				_errHandler.sync(this);
@@ -941,6 +949,7 @@ public class Python3Parser extends Parser {
 						setState(247);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
+						countDef += 1;
 						if (_la==ASSIGN) {
 							{
 							setState(245);
@@ -3715,6 +3724,20 @@ public class Python3Parser extends Parser {
 				}
 				break;
 			case DEF:
+				String sCadena = _input.LT(1).toString();
+				char[] aCaracteres = sCadena.toCharArray();
+				String position = "";
+				for (int i = aCaracteres.length-2; i>0; i--){
+					if(aCaracteres[i]!=','){
+						position += aCaracteres[i];
+					}else{
+						break;
+					}
+				}
+				char[] dest = position.toCharArray();
+				for (int i = dest.length-1; i >= 0; i--){
+					whereDef += dest[i];
+				}
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(609);
