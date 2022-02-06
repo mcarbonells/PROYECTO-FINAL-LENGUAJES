@@ -1,15 +1,49 @@
-def prueba (a, b, c, d, e, f):
-    prueba(a, b, c)
+def prueba (a):
+    print(a)
+    a=3
+    b=12
+
+class ClaseDePrueba:
+
+    def prueba (a, b, c, d, e, f):
+        prueba(a, b, c)
+
+    def prueba (a, b, c, d):
+        prueba(a, b, c, d, f, d, s, v)
+        a=3
+        b=12
+        a=3
+        b=12
+        prueba(a, b, c, d, f, d, s, v)
+        a=3
+        b=12
+        a=3
+        b=12
+
+    def prueba (a, b, c, d, e, f, r, t, y):
+        print(a)
+        a=3
+        b=12
+
+    def prueba ():
+        print(a)
+
+    def prueba (a):
+        print(a)
+        a=3
+        b=12
+
+class ClaseDePrueba2:
+
+    a=520
 
 def prueba (a, b, c, d):
     prueba(a, b, c, d, f, d, s, v)
-
-def prueba (a, b, c, d, e, f, r, t, y):
-    print(a)
-
-def prueba ():
-    print(a)
-
-def prueba (a):
-    print(a)
-
+    a=3
+    b=12
+    a=3
+    b=12
+    prueba(a, b, c, d, f, d, s, v)
+    a=3
+    b=12
+    a=3

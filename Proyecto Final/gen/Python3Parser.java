@@ -2,15 +2,14 @@
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class Python3Parser extends Parser {
 	public int countDef = 0;
+	public int indentation = 0;
+	public int[] linesDef = {0,0,0};  //initDef, endDef, indentDef
 	public String whereDef = "";
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
@@ -766,6 +765,7 @@ public class Python3Parser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(222);
+			linesDef[0] = _input.LT(1).getLine();
 			match(DEF);
 			setState(223);
 			match(NAME);
@@ -4545,8 +4545,16 @@ public class Python3Parser extends Parser {
 				setState(712);
 				match(NEWLINE);
 				setState(713);
+				indentation+=1;
 				match(INDENT);
-				setState(715); 
+				if (_input.LT(1).getType() == 6){
+					linesDef[2] = indentation;
+					linesDef[0] = _input.LT(1).getLine();
+				}
+				else {
+					linesDef[1] = _input.LT(1).getLine();
+				}
+				setState(715);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
@@ -4561,7 +4569,18 @@ public class Python3Parser extends Parser {
 					_la = _input.LA(1);
 				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << NUMBER) | (1L << DEF) | (1L << RETURN) | (1L << RAISE) | (1L << FROM) | (1L << IMPORT) | (1L << GLOBAL) | (1L << NONLOCAL) | (1L << ASSERT) | (1L << IF) | (1L << WHILE) | (1L << FOR) | (1L << TRY) | (1L << WITH) | (1L << LAMBDA) | (1L << NOT) | (1L << NONE) | (1L << TRUE) | (1L << FALSE) | (1L << CLASS) | (1L << YIELD) | (1L << DEL) | (1L << PASS) | (1L << CONTINUE) | (1L << BREAK) | (1L << ASYNC) | (1L << AWAIT) | (1L << NAME) | (1L << ELLIPSIS) | (1L << STAR) | (1L << OPEN_PAREN) | (1L << OPEN_BRACK))) != 0) || ((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (ADD - 68)) | (1L << (MINUS - 68)) | (1L << (NOT_OP - 68)) | (1L << (OPEN_BRACE - 68)) | (1L << (AT - 68)))) != 0) );
 				setState(719);
+				indentation-=1;
+				linesDef[1] = _input.LT(1).getLine();
 				match(DEDENT);
+				if (linesDef[2] == indentation){
+					if (linesDef[1]-linesDef[0]>=10){
+						System.out.println("Mal Olor detectado: Metodo Largo, Fila:"+ linesDef[0] + ", Cantidad de lineas:"+(linesDef[1]-linesDef[0]));
+					}
+				}
+				if (_input.LT(1).getType() == 6){
+					linesDef[2] = indentation;
+					linesDef[0] = _input.LT(1).getLine();
+				}
 				}
 				break;
 			default:
@@ -7322,6 +7341,7 @@ public class Python3Parser extends Parser {
 			setState(1043);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
+			//System.out.println("Hay clase en la linea: "+_input.LT(1).getLine());
 			if (_la==OPEN_PAREN) {
 				{
 				setState(1038);
