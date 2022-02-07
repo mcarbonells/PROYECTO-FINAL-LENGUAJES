@@ -12,6 +12,21 @@ class prueba(a, b, c, d):
     y = 2
     o = 9
     p = 8
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
     k = papas(p)
     l = 77456*34-(34+34)/23
 

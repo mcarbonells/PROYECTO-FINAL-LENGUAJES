@@ -1,41 +1,55 @@
 class prueba(a, b, c, d):
     print (a)
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
-    clase1.metodo1()
     a =  2
     c = b
     a = h
     prueba1(a, u)
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+
     if d:
         c = 3
-    def prueba (a, b, c, e):
+    def prueba (a, b, c, d):
         b = 5
         a=3
-        c = e
+        c = d
     c = 5
+    clase1.metodo1()
 
 d= 2
 
-class prueba2(a, b, c, d):
+class prueba2(a, b, c, d, m):
     print (a)
     a =  2
     c = b
-    d = 9384
+    m = d
+    clase1.metodo1()
     prueba1(a, u)
     def prueba (a, b, c, e):
         b = 5
         a=3
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
         c = e
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()
+    clase1.metodo1()

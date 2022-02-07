@@ -378,6 +378,13 @@ class BaseEventLoop(events.AbstractEventLoop):
 
         closing_agens = list(self._asyncgens)
         self._asyncgens.clear()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
 
         shutdown_coro = tasks.gather(
             *[ag.aclose() for ag in closing_agens],
@@ -746,9 +753,22 @@ class BaseEventLoop(events.AbstractEventLoop):
                     raise
                 else:
                     break
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
             else:
                 if len(exceptions) == 1:
                     raise exceptions[0]
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
+                    clase1.metodo1()
                 else:
                     # If they all have the same str(), raise one.
                     model = str(exceptions[0])
@@ -985,6 +1005,16 @@ class BaseEventLoop(events.AbstractEventLoop):
             infos = set(itertools.chain.from_iterable(infos))
 
             completed = False
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
+            clase1.metodo1()
             try:
                 for res in infos:
                     af, socktype, proto, canonname, sa = res
@@ -1419,6 +1449,18 @@ class BaseEventLoop(events.AbstractEventLoop):
                 self._coroutine_wrapper_set = False
 
     def get_debug(self):
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
+        clase1.metodo1()
         return self._debug
 
     def set_debug(self, enabled):
