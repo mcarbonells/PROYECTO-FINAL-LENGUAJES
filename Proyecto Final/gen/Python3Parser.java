@@ -4620,14 +4620,14 @@ public class Python3Parser extends Parser {
 				indentation-=1;
 				linesDef[1] = _input.LT(1).getLine();
 				match(DEDENT);
+				if (_input.LT(1).getType() == 6){
+					linesDef[2] = indentation;
+					linesDef[0] = _input.LT(1).getLine();
+				}
 				if (linesDef[2] == indentation){
 					if (linesDef[1]-linesDef[0]>=50){
 						System.out.println("Mal Olor detectado: Metodo Largo, Fila:"+ linesDef[0] + ", Cantidad de lineas:"+(linesDef[1]-linesDef[0]));
 					}
-				}
-				if (_input.LT(1).getType() == 6){
-					linesDef[2] = indentation;
-					linesDef[0] = _input.LT(1).getLine();
 				}
 				if (currentClass[1] == indentation){
 					if (currentClass[2]>10) {
