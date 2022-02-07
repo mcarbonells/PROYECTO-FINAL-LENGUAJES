@@ -19,7 +19,7 @@ public class Main {
 
             Python3Parser parser = new Python3Parser(tokens);
             ParseTree tree = parser.file_input();
-            System.out.print(tree.toStringTree(parser));
+            //System.out.print(tree.toStringTree(parser));
 
         } catch (Exception e){
             System.err.println("Error (Test): " + e);

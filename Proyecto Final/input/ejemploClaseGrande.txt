@@ -1,0 +1,53 @@
+class prueba(a, b, c, d):
+    print (a)
+    a =  2
+    c = b
+    m = n
+    u= 3
+    h = 5
+    s = d
+    q = 9
+    w = q
+    r = w
+    y = 2
+    o = 9
+    p = 8
+    k = papas(p)
+    l = 77456*34-(34+34)/23
+
+    a = h
+    prueba1(a, u)
+    if d:
+        c = 3
+    def prueba (a, b, c, e):
+        b = 5
+        a=3
+        f = 0
+        c = e
+    c = 5
+
+d= 2
+
+class prueba2(a, b, c, d, m):
+    print (a)
+    a =  2
+    c = b
+    m = 3
+    u= 3
+    h = 5
+    s = d
+    q = 9
+    w = q
+    r = w
+    y = 2
+    o = 9
+    p = 8
+    k = papas(p)
+    l = 77456*34-(34+34)/23*o
+    r = y
+    a = h
+    prueba1(a, u)
+    def prueba (a, b, c, e):
+        b = 5
+        a=3
+        c = e

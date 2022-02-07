@@ -1,0 +1,39 @@
+class prueba(a, b, c, d, m, u, h, o, y, p, w, s, q):
+    print (a)
+    a =  2
+    c = b
+    m = n
+    u= 3
+    h = 5
+    s = d
+    q = 9
+    w = q
+    y = 2
+    o = 9
+    p = 8
+    a = h
+    prueba1(a, u)
+    if d:
+        c = 3
+    def prueba (a, b, c, e):
+        b = 5
+        a=3
+        c = e
+    c = 5
+
+d= 2
+
+class prueba2(a, b, c, d, m):
+    print (a)
+    a =  2
+    c = b
+    prueba1(a, u)
+    def prueba (a, b, c, e, q, w, r, t, y, u, i, o, p):
+        b = 5
+        a = 3
+        c = e
+        d = m
+        q = w*r
+        a = t*y
+        y = u*i
+        b = o*p
