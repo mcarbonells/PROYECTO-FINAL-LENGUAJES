@@ -11,6 +11,7 @@ public class Python3Parser extends Parser {
 	public int countClass = 0;
 	public int indentation = 0;
 	public int[] linesDef = {0,0,0};  //initDef, endDef, indentDef
+	public int[] currentClass = {0,0,0};		//initClass, indentClass, calls
 	public String whereDef = "";
 	public String whereClass = "";
 	public String posDef = "";
@@ -3457,6 +3458,7 @@ public class Python3Parser extends Parser {
 				{
 				{
 				setState(573);
+				currentClass[2] += 1;
 				match(DOT);
 				setState(574);
 				match(NAME);
@@ -4664,14 +4666,20 @@ public class Python3Parser extends Parser {
 				indentation-=1;
 				linesDef[1] = _input.LT(1).getLine();
 				match(DEDENT);
-				if (linesDef[2] == indentation){
-					if (linesDef[1]-linesDef[0]>=10){
-						System.out.println("Mal Olor detectado: Metodo Largo, Fila:"+ linesDef[0] + ", Cantidad de lineas:"+(linesDef[1]-linesDef[0]));
-					}
-				}
 				if (_input.LT(1).getType() == 6){
 					linesDef[2] = indentation;
 					linesDef[0] = _input.LT(1).getLine();
+				}
+				if (linesDef[2] == indentation){
+					if (linesDef[1]-linesDef[0]>=50){
+						System.out.println("Mal Olor detectado: Metodo Largo, Fila:"+ linesDef[0] + ", Cantidad de lineas:"+(linesDef[1]-linesDef[0]));
+					}
+				}
+				if (currentClass[1] == indentation){
+					if (currentClass[2]>10) {
+						System.out.println("Mal Olor detectado: Clase con Envidia de Capacidades, Fila:" + currentClass[0] + ", Llamados a otras clases:" + currentClass[2]);
+						currentClass[2] = 0;
+					}
 				}
 				}
 				break;
@@ -6610,6 +6618,7 @@ public class Python3Parser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(926);
+				currentClass[2] += 1;
 				match(DOT);
 				setState(927);
 				match(NAME);
@@ -7451,6 +7460,9 @@ public class Python3Parser extends Parser {
 			setState(1036);
 			espClass = espacios;
 			posClass = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
+			currentClass[0] = _input.LT(1).getLine();
+			currentClass[1] = indentation;
+			currentClass[2] = 0;
 			match(CLASS);
 			setState(1037);
 			match(NAME);
