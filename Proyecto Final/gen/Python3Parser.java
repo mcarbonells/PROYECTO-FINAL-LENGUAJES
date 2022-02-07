@@ -11,7 +11,18 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class Python3Parser extends Parser {
 	public int countDef = 0;
+	public int countClass = 0;
 	public String whereDef = "";
+	public String whereClass = "";
+	public String posDef = "";
+	public String posClass = "";
+	public String[] arrayParametres = new String[50];
+	public String[] arrayParametresD = new String[50];
+	public boolean hayClass = false;
+	public boolean hayDef = false;
+	public int espClass = 0;
+	public int espDef = 0;
+	public int espacios = 0;
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -766,6 +777,8 @@ public class Python3Parser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(222);
+			espDef = espacios;
+			posDef = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
 			match(DEF);
 			setState(223);
 			match(NAME);
@@ -784,6 +797,7 @@ public class Python3Parser extends Parser {
 			}
 
 			setState(229);
+			hayDef = true;
 			match(COLON);
 			setState(230);
 			suite();
@@ -847,7 +861,7 @@ public class Python3Parser extends Parser {
 			setState(236);
 			match(CLOSE_PAREN);
 			if (countDef>=5){
-				System.out.println("Mal Olor detectado: Lista de Parámetros Larga, Fila:Columna "+ whereDef+", Cantidad parametros: "+countDef);
+				System.out.println("Mal Olor Detectado: Lista de Parámetros Larga, Fila:Columna "+ whereDef+", Cantidad parametros: "+countDef);
 			}
 			countDef = 0;
 			whereDef = "";
@@ -921,7 +935,6 @@ public class Python3Parser extends Parser {
 			case NAME:
 				{
 				setState(238);
-				countDef += 1;
 				tfpdef();
 				setState(241);
 				_errHandler.sync(this);
@@ -949,7 +962,6 @@ public class Python3Parser extends Parser {
 						setState(247);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						countDef += 1;
 						if (_la==ASSIGN) {
 							{
 							setState(245);
@@ -1220,6 +1232,16 @@ public class Python3Parser extends Parser {
 	}
 
 	public final TfpdefContext tfpdef() throws RecognitionException {
+		arrayParametresD[countDef] = _input.LT(1).getText();
+		countDef+=1;
+		if(hayClass){
+			for (int i = 0; i<arrayParametres.length-1; i++){
+				if(_input.LT(1).getText().equals(arrayParametres[i])){
+					arrayParametres[i] = "_";
+					break;
+				}
+			}
+		}
 		TfpdefContext _localctx = new TfpdefContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_tfpdef);
 		int _la;
@@ -3724,20 +3746,7 @@ public class Python3Parser extends Parser {
 				}
 				break;
 			case DEF:
-				String sCadena = _input.LT(1).toString();
-				char[] aCaracteres = sCadena.toCharArray();
-				String position = "";
-				for (int i = aCaracteres.length-2; i>0; i--){
-					if(aCaracteres[i]!=','){
-						position += aCaracteres[i];
-					}else{
-						break;
-					}
-				}
-				char[] dest = position.toCharArray();
-				for (int i = dest.length-1; i >= 0; i--){
-					whereDef += dest[i];
-				}
+				whereDef = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(609);
@@ -3745,6 +3754,7 @@ public class Python3Parser extends Parser {
 				}
 				break;
 			case CLASS:
+				whereClass = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(610);
@@ -4540,6 +4550,7 @@ public class Python3Parser extends Parser {
 				}
 				break;
 			case NEWLINE:
+				espacios += 1;
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(712);
@@ -4561,6 +4572,41 @@ public class Python3Parser extends Parser {
 					_la = _input.LA(1);
 				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << NUMBER) | (1L << DEF) | (1L << RETURN) | (1L << RAISE) | (1L << FROM) | (1L << IMPORT) | (1L << GLOBAL) | (1L << NONLOCAL) | (1L << ASSERT) | (1L << IF) | (1L << WHILE) | (1L << FOR) | (1L << TRY) | (1L << WITH) | (1L << LAMBDA) | (1L << NOT) | (1L << NONE) | (1L << TRUE) | (1L << FALSE) | (1L << CLASS) | (1L << YIELD) | (1L << DEL) | (1L << PASS) | (1L << CONTINUE) | (1L << BREAK) | (1L << ASYNC) | (1L << AWAIT) | (1L << NAME) | (1L << ELLIPSIS) | (1L << STAR) | (1L << OPEN_PAREN) | (1L << OPEN_BRACK))) != 0) || ((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (ADD - 68)) | (1L << (MINUS - 68)) | (1L << (NOT_OP - 68)) | (1L << (OPEN_BRACE - 68)) | (1L << (AT - 68)))) != 0) );
 				setState(719);
+				espacios -= 1;
+				String parametros = "";
+				boolean entre = false;
+				if(espacios==espClass){
+					hayClass = false;
+					for (int i = 0; i<arrayParametres.length-1; i++){
+						if(arrayParametres[i]== null){
+							break;
+						}
+						else if(arrayParametres[i]!="_") {
+							parametros += arrayParametres[i] + " ";
+							arrayParametres[i] = "_";
+							entre = true;
+						}
+					}
+					if (entre){
+						System.out.println("Mal Olor Detectado: Clase Vaga, Fila:Columna "+ posClass+", Parametros no usados: "+parametros);
+					}
+				}
+				if(espacios==espDef) {
+					hayDef = false;
+					for (int i = 0; i < arrayParametresD.length - 1; i++) {
+						if(arrayParametresD[i]== null){
+							break;
+						}
+						else if(arrayParametresD[i]!="_") {
+							parametros += arrayParametresD[i] + " ";
+							arrayParametresD[i] = "_";
+							entre = true;
+						}
+					}
+					if (entre){
+						System.out.println("Mal Olor Detectado: Metodo Vago, Fila:Columna "+ posDef+", Parametros no usados: "+parametros);
+					}
+				}
 				match(DEDENT);
 				}
 				break;
@@ -5982,6 +6028,22 @@ public class Python3Parser extends Parser {
 	}
 
 	public final Atom_exprContext atom_expr() throws RecognitionException {
+		if(hayClass){
+			for (int i = 0; i<arrayParametres.length-1; i++){
+				if(_input.LT(1).getText().equals(arrayParametres[i])){
+					arrayParametres[i] = "_";
+					break;
+				}
+			}
+		}
+		if(hayDef){
+			for (int i = 0; i<arrayParametresD.length-1; i++){
+				if(_input.LT(1).getText().equals(arrayParametresD[i])){
+					arrayParametresD[i] = "_";
+					break;
+				}
+			}
+		}
 		Atom_exprContext _localctx = new Atom_exprContext(_ctx, getState());
 		enterRule(_localctx, 134, RULE_atom_expr);
 		int _la;
@@ -7316,6 +7378,8 @@ public class Python3Parser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(1036);
+			espClass = espacios;
+			posClass = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
 			match(CLASS);
 			setState(1037);
 			match(NAME);
@@ -7338,10 +7402,16 @@ public class Python3Parser extends Parser {
 
 				setState(1042);
 				match(CLOSE_PAREN);
+				if (countClass>=5){
+					System.out.println("Mal Olor Detectado: Lista de Parámetros Larga, Fila:Columna "+ whereClass+", Cantidad parametros: "+countClass);
+				}
+				countClass = 0;
+				whereClass = "";
 				}
 			}
 
 			setState(1045);
+			hayClass = true;
 			match(COLON);
 			setState(1046);
 			suite();
@@ -7472,6 +7542,10 @@ public class Python3Parser extends Parser {
 	}
 
 	public final ArgumentContext argument() throws RecognitionException {
+		if (whereClass!=""){
+			arrayParametres[countClass] = _input.LT(1).getText();
+			countClass += 1;
+		}
 		ArgumentContext _localctx = new ArgumentContext(_ctx, getState());
 		enterRule(_localctx, 158, RULE_argument);
 		int _la;
