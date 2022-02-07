@@ -1,26 +1,2 @@
-class prueba(a, b, c, d):
-    print (a)
-    a =  2
-    c = b
-    prueba1(a, b)
-    if d:
-        c = 3
-    def prueba (a, b, c, e):
-        b = 5
-        a=3
-    c = 5
-
-d= 2
-
-class prueba(a, b, c, d, e):
-    print (a)
-    a =  2
-    c = b
-    def prueba1 (a, b, d):
-        b = 5
-        if d:
-            a = 1
-    c = 5
-
-d= 2
+a = b
 

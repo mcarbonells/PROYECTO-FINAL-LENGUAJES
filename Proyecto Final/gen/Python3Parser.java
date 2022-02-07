@@ -2,16 +2,15 @@
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class Python3Parser extends Parser {
 	public int countDef = 0;
 	public int countClass = 0;
+	public int indentation = 0;
+	public int[] linesDef = {0,0,0};  //initDef, endDef, indentDef
 	public String whereDef = "";
 	public String whereClass = "";
 	public String posDef = "";
@@ -779,6 +778,7 @@ public class Python3Parser extends Parser {
 			setState(222);
 			espDef = espacios;
 			posDef = _input.LT(1).getLine()+":"+_input.LT(1).getCharPositionInLine();
+			linesDef[0] = _input.LT(1).getLine();
 			match(DEF);
 			setState(223);
 			match(NAME);
@@ -4556,8 +4556,16 @@ public class Python3Parser extends Parser {
 				setState(712);
 				match(NEWLINE);
 				setState(713);
+				indentation+=1;
 				match(INDENT);
-				setState(715); 
+				if (_input.LT(1).getType() == 6){
+					linesDef[2] = indentation;
+					linesDef[0] = _input.LT(1).getLine();
+				}
+				else {
+					linesDef[1] = _input.LT(1).getLine();
+				}
+				setState(715);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
@@ -4607,7 +4615,18 @@ public class Python3Parser extends Parser {
 						System.out.println("Mal Olor Detectado: Metodo Vago, Fila:Columna "+ posDef+", Parametros no usados: "+parametros);
 					}
 				}
+				indentation-=1;
+				linesDef[1] = _input.LT(1).getLine();
 				match(DEDENT);
+				if (linesDef[2] == indentation){
+					if (linesDef[1]-linesDef[0]>=10){
+						System.out.println("Mal Olor detectado: Metodo Largo, Fila:"+ linesDef[0] + ", Cantidad de lineas:"+(linesDef[1]-linesDef[0]));
+					}
+				}
+				if (_input.LT(1).getType() == 6){
+					linesDef[2] = indentation;
+					linesDef[0] = _input.LT(1).getLine();
+				}
 				}
 				break;
 			default:
@@ -7386,6 +7405,7 @@ public class Python3Parser extends Parser {
 			setState(1043);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
+			//System.out.println("Hay clase en la linea: "+_input.LT(1).getLine());
 			if (_la==OPEN_PAREN) {
 				{
 				setState(1038);
